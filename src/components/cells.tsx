@@ -4,11 +4,11 @@ import Cell from "./cell";
 
 
 export default function Cells() {
-    const {board}=useContext(GameContext)
+    const {room}=useContext(GameContext)
     return (
         <div className="grid grid-cols-3 gap-4 w-[400px]">
             {
-                board!.state.map((val, index) => (
+                room!.board!.cells.map((val, index) => (
                     <Cell val={val} index={index} key={index} />
                 ))
             }

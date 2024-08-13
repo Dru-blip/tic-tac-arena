@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { toast } from "sonner";
 import GameContext from "../context";
 import { socket } from "../socket";
@@ -7,9 +7,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 
 
 export default function CreateRoomForm() {
-
     // const [name, setName] = useState<string>("");
-    const { setRoom ,playerId} = useContext(GameContext)
+    const { setRoom, playerId } = useContext(GameContext)
+
+    useEffect(() => {
+        socket.on("playerJoined", (data) => {
+            setRoom(data)
+        })
+    }, [])
     return (
         <div>
             <Card className="p-2 w-[400px]">
@@ -20,16 +25,15 @@ export default function CreateRoomForm() {
                     {/* Button for creating room */}
                     <Button onClick={() => {
                         // send create room request
-                        socket.emit("room:create")
+                        socket.emit("createRoom")
                         // event listener for room created
-                        socket.on("room:created", (room) => {
-                            // update room details of the player
-                            setRoom(room)
+                        socket.on("roomCreated", (roomId) => {
                             // display success notification on room creation
                             toast.success("Room created")
                             // emit player join request
-                            socket.emit("room:player-join-request",{roomId:room?.roomId,playerId})
+                            socket.emit("joinRoom", { id: roomId, playerId })
                         })
+
                     }}>Create Room</Button>
                 </CardContent>
             </Card>

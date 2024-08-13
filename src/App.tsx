@@ -20,7 +20,7 @@ function App() {
     socket.on("connect", socketEvents.onConnect)
     socket.on("disconnect", () => {
       console.log("Disconnecting")
-      socket.emit("player:disconnect", { roomId: room?.roomId, playerId })
+      socket.emit("player:disconnect", { roomId: room?.id, playerId })
     })
     return () => {
       socket.off("connect", socketEvents.onConnect)
