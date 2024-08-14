@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react"
-import { socket } from "../socket";
-import GameContext from "../context";
+import { socket } from "../../socket";
+import {MultiplayerGameContext} from "../../context";
 
 
 
@@ -9,7 +9,7 @@ interface Props {
 }
 
 export default function Timer({ time }: Props) {
-    const { room } = useContext(GameContext)
+    const { room } = useContext(MultiplayerGameContext)
     const [timeLeft, setTimeLeft] = useState<number | null>(time)
     useEffect(() => {
         if (!timeLeft) return;

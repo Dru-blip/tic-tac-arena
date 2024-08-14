@@ -1,31 +1,33 @@
 import { useContext, useEffect, useState } from "react";
-import GameContext from "../context";
-import { socket } from "../socket";
-import Cells from "./cells";
-import { Card } from "./ui/card";
+import {MultiplayerGameContext} from "../../context";
+import { socket } from "../../socket";
+import Cells from "../Cells";
+import { Card } from "../ui/card";
+import { IRoom } from "../../types";
+import Cell from "./Cell";
 
 
 
 export default function Board() {
-    const { room, setRoom } = useContext(GameContext)
+    const { room, setRoom } = useContext(MultiplayerGameContext)
     const [roundDraw, setRoundDraw] = useState<boolean>(false)
 
 
     useEffect(() => {
-        socket.on("madeMove", (data) => {
+        socket.on("madeMove", (data:IRoom) => {
             setRoom(data)
         })
 
-        socket.on("roundDraw", (data) => {
+        socket.on("roundDraw", (data:IRoom) => {
             setRoom(data)
             setRoundDraw(true)
         })
 
-        socket.on("roundWin", (data) => {
+        socket.on("roundWin", (data:IRoom) => {
             setRoom(data)
         })
 
-        socket.on("roundStart", (data) => {
+        socket.on("roundStart", (data:IRoom) => {
             setRoundDraw(false)
             setRoom(data)
         })
@@ -49,7 +51,7 @@ export default function Board() {
                         room?.winner
                             ? <Card className={"text-center font-bold text-4xl p-3"}>{room?.winner} won the round</Card>
                             // display cells if the game is not over or draw
-                            : <><Cells /></>
+                            : <> <Cells state={room!.board!.cells} RenderElement={Cell}/></>
                     )
             }
 

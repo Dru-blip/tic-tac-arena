@@ -1,7 +1,8 @@
 import { createContext } from "react"
-import { GameContextProps } from "../types"
+import { MultiplayerGameContextProps,SinglePlayerGameContextProps} from "../types"
 
 
-const GameContext=createContext<GameContextProps>({} as GameContextProps)
+const SinglePlayerContext=createContext<SinglePlayerGameContextProps>({} as SinglePlayerGameContextProps)
+const MultiplayerGameContext=createContext<MultiplayerGameContextProps>({} as MultiplayerGameContextProps)
 
-export default GameContext
+export {MultiplayerGameContext,SinglePlayerContext}

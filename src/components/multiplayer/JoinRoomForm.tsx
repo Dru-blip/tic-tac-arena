@@ -1,16 +1,16 @@
 import { useContext, useEffect, useState } from "react";
-import GameContext from "../context";
-import { socket } from "../socket";
-import { Button } from "./ui/button";
-import { Card, CardContent } from "./ui/card";
-import { Input } from "./ui/input";
-import { Label } from "./ui/label";
+import {MultiplayerGameContext} from "../../context";
+import { socket } from "../../socket";
+import { Button } from "../ui/button";
+import { Card, CardContent } from "../ui/card";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
 // import * as socketEvents from "../lib/events"
 
 export default function JoinRoomForm() {
     // state for storing room Id
     const [roomId, setRoomId] = useState<string>("");
-    const { setRoom, playerId } = useContext(GameContext)
+    const { setRoom, playerId } = useContext(MultiplayerGameContext)
 
     useEffect(() => {
         // event listener for player joined
@@ -28,7 +28,7 @@ export default function JoinRoomForm() {
                 <div className="flex flex-col gap-3">
                     <Label>Room Id</Label>
                     {/* Input for entering room Id */}
-                    <Input placeholder="Enter Room Id" onChange={(e) => setRoomId(e.target.value)} />
+                    <Input placeholder="Enter Room Id" onChange={(e) => setRoomId(e.target.value)} required/>
                 </div>
                 {/* Button for joining room */}
                 <Button onClick={() => {

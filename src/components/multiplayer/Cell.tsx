@@ -1,16 +1,14 @@
 import { useContext } from "react"
-import { socket } from "../socket"
-import { Button } from "./ui/button"
-import GameContext from "../context"
+import { socket } from "../../socket"
+import { Button } from "../ui/button"
+import {MultiplayerGameContext} from "../../context"
+import { CellProps } from "../../types"
 
 
-interface Props {
-    val: string
-    index: number
-}
 
-export default function Cell({ val, index }: Props) {
-    const { room, playerId, setRoom } = useContext(GameContext)
+
+export default function Cell({ val, index }: CellProps) {
+    const { room, playerId, setRoom } = useContext(MultiplayerGameContext)
 
 
     // check player's turn

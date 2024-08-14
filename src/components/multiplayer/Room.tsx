@@ -1,23 +1,18 @@
 import { useContext, useEffect } from "react"
-import GameContext from "../context"
-import { socket } from "../socket"
-import Board from "./board"
+import {MultiplayerGameContext} from "../../context"
+import { socket } from "../../socket"
+import Board from "./Board"
 import { ClipboardIcon } from "@radix-ui/react-icons"
-import { Button } from "./ui/button"
+import { Button } from "../ui/button"
 import { toast } from "sonner"
-import PlayerSymbolCards from "./player-symbol-cards"
-import PlayerScoreCards from "./player-score-cards"
+import PlayerSymbolCards from "../PlayerSymbolCards"
+import PlayerScoreCards from "../PlayerScoreCards"
 
 
 export default function Room() {
-    const { room, playerId, setRoom } = useContext(GameContext)
+    const { room, playerId, setRoom } = useContext(MultiplayerGameContext)
 
     useEffect(() => {
-        // emit event when both players joined in the room
-        // if (room?.totalPlayers === 2) {
-        //     socket.emit("startGame", { roomId: room?.id, playerIds: Object.keys(room?.players) })
-        // }
-
         // event listener for start game
         socket.on("gameStarted", (data) => {
             setRoom(data)
@@ -26,12 +21,14 @@ export default function Room() {
 
         // event listener for player joined
         socket.on("playerJoined", (data) => {
+            // console.log(data)
             setRoom(data)
         })
 
         // event listener for player left
-        socket.on("player:disconnected", (data) => {
-            console.log(data)
+        socket.on("playerLeft", (data) => {
+            toast.error(data.playerId + " left the room")
+            setRoom(data.room)
         })
 
     }, [])

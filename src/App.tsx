@@ -1,31 +1,26 @@
 import { useContext, useEffect } from 'react'
 import './App.css'
-import CreateRoomForm from './components/create-room-form'
-import Room from './components/room'
-import GameContext from './context'
-import * as socketEvents from "./lib/events"
-import { socket } from './socket'
+import { CreateRoomForm, JoinRoomForm, Room } from './components/multiplayer'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/ui/tabs"
-import JoinRoomForm from './components/join-room-form'
+import {MultiplayerGameContext} from './context'
+import { socket } from './socket'
 
 
 function App() {
-  const { playerId, room, setPlayerId } = useContext(GameContext)
+  const { playerId, room, setPlayerId } = useContext(MultiplayerGameContext)
   useEffect(() => {
-    if (playerId === -2550) {
-      let id = Math.floor(Math.random() * 1000)
-      setPlayerId(id)
-      sessionStorage.setItem("playerId", String(playerId))
-    }
-    socket.on("connect", socketEvents.onConnect)
-    socket.on("disconnect", () => {
-      console.log("Disconnecting")
-      socket.emit("player:disconnect", { roomId: room?.id, playerId })
+    // if (!playerId) {
+    // }
+    socket.on("connect", ()=>{
+      setPlayerId(socket.id!)      
     })
-    return () => {
-      socket.off("connect", socketEvents.onConnect)
-      socket.off("disconnect", () => { socketEvents.onDisconnect(room!, playerId) })
-    }
+    // socket.on("disconnect", () => {
+
+    // })
+    // return () => {
+    //   socket.off("connect", socketEvents.onConnect)
+    //   socket.off("disconnect", () => { socketEvents.onDisconnect(room!, playerId) })
+    // }
   }, [])
   return (
     <>

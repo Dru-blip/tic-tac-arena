@@ -1,14 +1,14 @@
 import { useContext, useEffect } from "react";
 import { toast } from "sonner";
-import GameContext from "../context";
-import { socket } from "../socket";
-import { Button } from "./ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import {MultiplayerGameContext} from "../../context";
+import { socket } from "../../socket";
+import { Button } from "../ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 
 
 export default function CreateRoomForm() {
     // const [name, setName] = useState<string>("");
-    const { setRoom, playerId } = useContext(GameContext)
+    const { setRoom, playerId } = useContext(MultiplayerGameContext)
 
     useEffect(() => {
         socket.on("playerJoined", (data) => {

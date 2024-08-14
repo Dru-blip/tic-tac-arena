@@ -1,6 +1,7 @@
 import { useState } from "react";
-import GameContext from "../context";
-import { IBoard, IPlayer, IRoom } from "../types";
+import {MultiplayerGameContext} from "../../context";
+import { IBoard, IPlayer, IRoom } from "../../types";
+import { socket } from "../../socket";
 
 
 // props for GameProvider 
@@ -13,10 +14,10 @@ export default function GameProvider({ children }: ProviderProps) {
     const [room, setRoom] = useState<IRoom>()
 
     //check sessionStorage for playerId,if yes parse it to number,else set it to -2550
-    const [playerId, setPlayerId] = useState<number>(sessionStorage.getItem("playerId") ? parseInt(sessionStorage.getItem("playerId")!) : -2550)
+    const [playerId, setPlayerId] = useState<string>(socket.id!)
     return (
-        <GameContext.Provider value={{ room, setRoom, playerId, setPlayerId }}>
+        <MultiplayerGameContext.Provider value={{ room, setRoom, playerId, setPlayerId }}>
             {children}
-        </GameContext.Provider>
+        </MultiplayerGameContext.Provider>
     )
 }

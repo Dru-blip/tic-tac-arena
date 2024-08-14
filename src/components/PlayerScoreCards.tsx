@@ -1,10 +1,10 @@
 import { useContext } from "react"
-import GameContext from "../context"
+import {MultiplayerGameContext} from "../context"
 import { Card } from "./ui/card"
 
 
 export default function PlayerScoreCards() {
-    const { room } = useContext(GameContext)
+    const { room } = useContext(MultiplayerGameContext)
     const [player1Id, player2Id] = Object.keys(room?.players!)
     const player1 = room?.players[player1Id]
     const player2 = room?.players[player2Id]

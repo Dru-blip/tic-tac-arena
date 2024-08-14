@@ -1,12 +1,12 @@
 import { useContext } from "react"
-import GameContext from "../context"
+import {MultiplayerGameContext} from "../context"
 import { Card } from "./ui/card"
 
 export default function PlayerSymbolCards() {
-    const { room, playerId } = useContext(GameContext)
+    const { room, playerId } = useContext(MultiplayerGameContext)
     const [player1Id, player2Id] = Object.keys(room?.players!)
-    const you = room?.players[playerId === Number.parseInt(player1Id) ? player1Id : player2Id]
-    const opponent = room?.players[playerId !== Number.parseInt(player1Id) ? player1Id : player2Id]
+    const you = room?.players[playerId === player1Id ? player1Id : player2Id]
+    const opponent = room?.players[playerId !== player1Id ? player1Id : player2Id]
 
     return (
         <div className="flex items-center justify-around gap-4">
