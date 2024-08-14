@@ -1,18 +1,19 @@
 import { useContext, useEffect } from 'react'
 import './App.css'
+import BackButton from './components/BackButton'
 import { CreateRoomForm, JoinRoomForm, Room } from './components/multiplayer'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/ui/tabs"
-import {MultiplayerGameContext} from './context'
+import { MultiplayerGameContext } from './context'
 import { socket } from './socket'
 
 
 function App() {
-  const { playerId, room, setPlayerId } = useContext(MultiplayerGameContext)
+  const { room, setPlayerId } = useContext(MultiplayerGameContext)
   useEffect(() => {
     // if (!playerId) {
     // }
-    socket.on("connect", ()=>{
-      setPlayerId(socket.id!)      
+    socket.on("connect", () => {
+      setPlayerId(socket.id!)
     })
     // socket.on("disconnect", () => {
 
@@ -24,7 +25,8 @@ function App() {
   }, [])
   return (
     <>
-      <div className='bg-card min-h-screen flex items-center justify-center'>
+      <div className='bg-card min-h-screen flex flex-col items-center justify-center'>
+        <BackButton path="/play" position={{top:"top-24",left:"left-2"}}/>
         {
           room ? <Room /> : (
             <Tabs defaultValue="create" className="w-[400px]">

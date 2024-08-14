@@ -1,14 +1,15 @@
-
 // component for cpu game
-import Board from "../components/single-player/Board";
+import BackButton from "../components/BackButton";
+import SinglePlayerGame from "../components/single-player/Game";
 import SinglePlayerGameProvider from "../components/single-player/SinglePlayerGameProvider";
 
 
 export default function Cpu() {
     return (
-        <div className="bg-card min-h-screen text-white ">
+        <div className="bg-card min-h-screen flex flex-col items-center justify-center text-white">
+            <BackButton path="/play" position={{top:"top-20",left:"left-20"}}/>
             <SinglePlayerGameProvider>
-                <Board />
+                <SinglePlayerGame />
             </SinglePlayerGameProvider>
         </div>
     )

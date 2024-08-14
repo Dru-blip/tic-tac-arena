@@ -5,8 +5,8 @@ import Board from "./Board"
 import { ClipboardIcon } from "@radix-ui/react-icons"
 import { Button } from "../ui/button"
 import { toast } from "sonner"
-import PlayerSymbolCards from "../PlayerSymbolCards"
-import PlayerScoreCards from "../PlayerScoreCards"
+import PlayerSymbolCards from "./PlayerSymbolCards"
+import PlayerScoreCards from "./PlayerScoreCards"
 
 
 export default function Room() {

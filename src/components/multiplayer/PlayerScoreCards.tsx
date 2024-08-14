@@ -1,6 +1,7 @@
 import { useContext } from "react"
-import {MultiplayerGameContext} from "../context"
-import { Card } from "./ui/card"
+import {MultiplayerGameContext} from "../../context"
+import { Card } from "../ui/card"
+
 
 
 export default function PlayerScoreCards() {

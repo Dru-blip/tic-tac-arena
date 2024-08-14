@@ -1,6 +1,5 @@
-import { useContext, useEffect, useState } from "react"
-import { socket } from "../../socket";
-import {MultiplayerGameContext} from "../../context";
+import { useContext, useEffect, useState } from "react";
+import { MultiplayerGameContext } from "../../context";
 
 
 
