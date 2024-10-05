@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { MultiplayerGameContext } from "../../context";
 import { socket } from "../../socket";
-import Cells from "../Cells.tsx";
+import Cells from "../Cells";
 import { Card } from "../ui/card";
 import { IRoom } from "../../types";
 import Cell from "./Cell";

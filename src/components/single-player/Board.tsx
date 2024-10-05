@@ -1,6 +1,6 @@
 //Board Component for game with AI
 import { useContext } from "react";
-import Cells from "../Cells.tsx";
+import Cells from "../Cells";
 import Cell from "./Cell";
 import { SinglePlayerContext } from "../../context";
 import { Card } from "../ui/card";
