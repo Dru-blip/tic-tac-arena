@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { SinglePlayerContext } from "../../context";
-import { IRoom } from "../../types";
 
 
 interface Props {

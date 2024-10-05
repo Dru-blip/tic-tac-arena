@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
-import {MultiplayerGameContext} from "../../context";
+import { MultiplayerGameContext } from "../../context";
 import { socket } from "../../socket";
-import Cells from "../Cells";
+import Cells from "../Cells.tsx";
 import { Card } from "../ui/card";
 import { IRoom } from "../../types";
 import Cell from "./Cell";
@@ -14,20 +14,20 @@ export default function Board() {
 
 
     useEffect(() => {
-        socket.on("madeMove", (data:IRoom) => {
+        socket.on("madeMove", (data: IRoom) => {
             setRoom(data)
         })
 
-        socket.on("roundDraw", (data:IRoom) => {
+        socket.on("roundDraw", (data: IRoom) => {
             setRoom(data)
             setRoundDraw(true)
         })
 
-        socket.on("roundWin", (data:IRoom) => {
+        socket.on("roundWin", (data: IRoom) => {
             setRoom(data)
         })
 
-        socket.on("roundStart", (data:IRoom) => {
+        socket.on("roundStart", (data: IRoom) => {
             setRoundDraw(false)
             setRoom(data)
         })
@@ -51,7 +51,7 @@ export default function Board() {
                         room?.winner
                             ? <Card className={"text-center font-bold text-4xl p-3"}>{room?.winner} won the round</Card>
                             // display cells if the game is not over or draw
-                            : <> <Cells state={room!.board!.cells} RenderElement={Cell}/></>
+                            : <> <Cells state={room!.board!.cells} RenderElement={Cell} /></>
                     )
             }
 
