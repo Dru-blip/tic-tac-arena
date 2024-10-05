@@ -23,6 +23,5 @@ createRoot(document.getElementById('root')!).render(
         <Toaster richColors toastOptions={{}}/>
       </BrowserRouter>
     </div>
-
   </StrictMode>,
 )
