@@ -1,7 +1,7 @@
 import { useState } from "react";
-import {MultiplayerGameContext} from "../../context";
-import { IBoard, IPlayer, IRoom } from "../../types";
+import { MultiplayerGameContext } from "../../context";
 import { socket } from "../../socket";
+import { IRoom } from "../../types";
 
 
 // props for GameProvider 
