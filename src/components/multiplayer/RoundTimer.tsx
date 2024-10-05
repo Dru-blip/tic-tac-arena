@@ -1,5 +1,4 @@
-import { useContext, useEffect, useState } from "react";
-import { MultiplayerGameContext } from "../../context";
+import { useEffect, useState } from "react";
 
 
 
@@ -8,7 +7,7 @@ interface Props {
 }
 
 export default function Timer({ time }: Props) {
-    const { room } = useContext(MultiplayerGameContext)
+    // const { room } = useContext(MultiplayerGameContext)
     const [timeLeft, setTimeLeft] = useState<number | null>(time)
     useEffect(() => {
         if (!timeLeft) return;
